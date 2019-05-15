@@ -13,8 +13,8 @@ const entity = {
     descripcion: '*Marca chevrolet ::x*',
     nombre: 'Chevrolett'
 };
-let marca = new MarcaDS('/marca');
-marca.find('');
+//let marca = new MarcaDS('/marca');
+//marca.find('');
 //marca.edit(entity);
 //marca.eliminar(6);
 //marca.create(entity);

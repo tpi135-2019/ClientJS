@@ -12,7 +12,7 @@ class MetodsT{
         y el objeto a persistir
     */
     create(entity){
-    let promesa= new Promise((resolve, reject) => {
+   return new Promise((resolve, reject) => {
      if(this.url.length>0 && entity!=null){
 
 
@@ -40,7 +40,7 @@ class MetodsT{
         y el objeto a modificar
     */
     edit(entity){
-let promesa= new Promise((resolve, reject) => {
+return new Promise((resolve, reject) => {
 
     if (entity != null && this.url.length > 0) {
 
@@ -71,15 +71,15 @@ let promesa= new Promise((resolve, reject) => {
     */
 
     eliminar(id){
-  let promesa= new Promise((resolve, reject) => {
+ return new Promise((resolve, reject) => {
 if(id!=undefined && id !=null && this.url.length>0){
 
       return fetch(this.url + '/' + id, {
           method: 'DELETE'
       })
-          .then(resp => resp // ojo aca xd resp.json()
+          .then(respuesta => respuesta // ojo aca xd resp.json()
           )
-          .catch(error => reject(`no se pudo eliminar ${error}`))
+          .catch(error => reject(` (Error al eliminar registro ${error}`))
           .then(response => resolve(`success ${response}`));
 
   }else
