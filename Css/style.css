@@ -1,0 +1,30 @@
+main {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 10fr 2fr 2fr;
+    grid-template-rows: 2fr 5fr 2fr;
+    grid-template-areas: "cabecera cabecera" "art art" "cr cr";
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background: #ffcbae;
+    grid-area: cabecera;
+}
+
+article {
+    grid-area: art;
+}
+
+footer {
+    background: #A96EFF;
+    grid-area: cr;
+}
+
+nav {
+    background: blue;
+    grid-area: bar;
+}
