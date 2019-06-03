@@ -24,7 +24,6 @@ class TPITabla extends HTMLElement {
 
     connectedCallback() {
         //creacion de elementos para tabla
-        let seleccionada;
         let tabla = document.createElement("table");
         let cabecerasList = this.cabeceras.split(",");
         let select = document.createElement("select");
@@ -57,10 +56,9 @@ class TPITabla extends HTMLElement {
         */
         let tr0 = document.createElement("tr");
         tabla.appendChild(tr0);
-    
+
 
         this.tr0 = tr0;
-        this.seleccionada = seleccionada;
         this.tabla = tabla;
         this.cabecerasList = cabecerasList;
 
@@ -68,7 +66,7 @@ class TPITabla extends HTMLElement {
         select.s = this;
         btns.s = this;
         btna.s = this;
-        select.onchange=this.renderizar;
+        select.onchange=this.renderizarTamanioP;
         btns.onclick = this.siguiente;
         btna.onclick = this.anterior;
         this.root.appendChild(tabla);
@@ -95,19 +93,16 @@ class TPITabla extends HTMLElement {
     }
 
     siguiente(){
-
         let comp = this.s;
         comp.tabla.innerHTML="";
         comp.tabla.appendChild(this.s.tr0);
         let frs = comp.getAttribute("first");
         let pa = comp.getAttribute("pagesize");
         comp.setAttribute("first",(parseInt(frs)+parseInt(pa)));
-        console.log(parseInt(comp.getAttribute("first")));
-
         this.dispatchEvent(new CustomEvent("Click_btn", { composed: true, bubbles: true }));
     }
 
-    renderizar(){
+    renderizarTamanioP(){
         console.log(this.value);
         let comp = this.s;
         this.s.tabla.innerHTML="";
@@ -122,12 +117,10 @@ class TPITabla extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log('hay cambios jefaso------------->');
         this.crearFilas();
     }
 
     crearFilas() {
-        let seleccionada = this.seleccionada;
         let tr0 = this.tr0;
         let tabla = this.tabla;
         let cabecerasList = this.cabeceras.split(",");
@@ -136,7 +129,6 @@ class TPITabla extends HTMLElement {
             cabecerasList.forEach( (element)=> {
                 let th = document.createElement("th"); // creando elemento th para encabezados
                 th.innerText = element.toUpperCase(); // colocando encabezados ha la tabla
-                th.setAttribute("draggable",false);
                 tr0.appendChild(th);
             });
             tabla.innerHTML=""; //limpiando tabla
@@ -187,6 +179,7 @@ class TPITabla extends HTMLElement {
         th, td {
         border-bottom: 1px solid #000;
         border-right: 1px solid #000;
+        background-color: #eef8ff;
     }   
 
         th.last, td.last {
@@ -197,7 +190,7 @@ class TPITabla extends HTMLElement {
         text-align: center;
     }
       th {
-    background-color: #d3a4ff;
+    background-color: #b6b6ff;
     width: 25%;
     }
 

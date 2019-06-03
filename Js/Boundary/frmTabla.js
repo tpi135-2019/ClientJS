@@ -1,12 +1,12 @@
 import MetodsT from '../Control/MetodsT.js';
 
-const controlador = new MetodsT('marca');
+const controlador = new MetodsT();
 
 let tabla = document.querySelector("#idtabla");
 let first= tabla.getAttribute("first");
 let pageSize= tabla.getAttribute("pagesize");
 
-controlador.findRange(`?first=${first}&pagesize=${pageSize}`).then((data)=> {
+controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data)=> {
     let tabla = document.querySelector("#idtabla");
     tabla.setAttribute("datos",JSON.stringify(data));
 });
@@ -23,11 +23,9 @@ function llenado(){
 
     let first= tabla.getAttribute("first");
     let pageSize= tabla.getAttribute("pagesize");
-//`?first=${first}&pagesize=${pageSize}`
-      controlador.findRange(`?first=${first}&pagesize=${pageSize}`).then((data)=> {
-
+    //`?first=${first}&pagesize=${pageSize}`
+      controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data)=> {
         let tabla = document.querySelector("#idtabla");
-
         tabla.setAttribute("datos",JSON.stringify(data));
     });
 }

@@ -1,0 +1,36 @@
+
+.ventana{
+    background:darkcyan;
+    width:30%;
+    color:rgba(255,255,255,1);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
+    text-align:center;
+    padding:33px;
+    min-height:250px;
+    border-radius:22px;
+    position:absolute;
+    left:34%;
+    top:25%;
+    display:none;
+}
+
+.cerrar{
+    position:absolute;
+    right:3px;
+    top:1px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+
+
+#cont{
+    background:rgba(255,255,255,1);
+    padding:33px;
+    box-sizing:border-box;
+    width:1000px;
+    height:700px;
+    margin:auto;
+}
+

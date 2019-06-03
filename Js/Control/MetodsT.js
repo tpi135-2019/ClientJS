@@ -1,9 +1,6 @@
 class MetodsT {
-    constructor(url) {
-        var urlBase = 'http://localhost:8080/HistoryCars-1.0-SNAPSHOT/webresources/';
-        this.url = urlBase + url;
-        console.log(this.url);
-
+    constructor() {
+        this.urlBase = 'http://localhost:8080/HistoryCars-1.0-SNAPSHOT/webresources/';
     }
 
     /*
@@ -11,12 +8,12 @@ class MetodsT {
         resive como parametros la URL donde se expone el metodo
         y el objeto a persistir
     */
-    create(entity) {
+    create(path,entity) {
         return new Promise((resolve, reject) => {
-            if (this.url.length > 0 && entity != null) {
+            if (this.urlBase+path.length > 0 && entity != null) {
 
 
-                fetch(this.url, {
+                fetch(this.urlBase+path, {
                     method: 'POST',
                     body: JSON.stringify(entity),
                     headers: {
@@ -39,13 +36,13 @@ class MetodsT {
         resive como parametros la URL donde se expone el metodo
         y el objeto a modificar
     */
-    edit(entity) {
+    edit(path,entity) {
         return new Promise((resolve, reject) => {
 
-            if (entity != null && this.url.length > 0) {
+            if (entity != null && this.urlBase+path.length > 0) {
 
 
-                fetch(this.url, {
+                fetch(this.urlBase+path, {
                     method: 'PUT',
                     body: JSON.stringify(entity),
                     headers: {
@@ -70,11 +67,11 @@ class MetodsT {
         y el identificador de la entidad a remover
     */
 
-    eliminar(id) {
+    eliminar(path,id) {
         return new Promise((resolve, reject) => {
-            if (id !== undefined && id != null && this.url.length > 0) {
+            if (id !== undefined && id != null && this.urlBase+path.length > 0) {
 
-                return fetch(this.url + '/' + id, {
+                return fetch(this.urlBase+path+ '/' + id, {
                     method: 'DELETE'
                 })
                     .then(respuesta => respuesta // ojo aca xd resp.json()
@@ -95,18 +92,10 @@ class MetodsT {
     Busca registros en el server dependiendo el url
    */
     find(url) {
-        this.url += url;
-        return  fetch(this.url).then(function(response) {
+        return  fetch(this.urlBase+url).then(function(response) {
             return response.json();
         })
 
-    }
-
-
-    async findRange(url){
-        const response = await fetch(this.url+url);
-        const data = await response.json();
-        return data;
     }
 
 }
