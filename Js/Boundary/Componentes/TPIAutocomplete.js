@@ -1,6 +1,6 @@
 const template = document.createElement('template');
 template.innerHTML = `
-<input list="opciones">
+<input list="opciones" >
     <datalist id="opciones">
     </datalist>
 </input>
@@ -15,75 +15,73 @@ template.innerHTML = `
         }
     input:focus {
     border-bottom: solid #F39B53 .2rem;
-    </style>
-     
-`;
+    </style>`;
 
 class TPIAutocomplete extends HTMLElement {
 
-	constructor() {
-		super();
-		this.root = this.attachShadow({mode: 'open'});
+    constructor() {
+        super();
+        this.root = this.attachShadow({ mode: 'open' });
 
-		this.root.appendChild(template.content.cloneNode(true));
-		this.input = this.root.querySelector('input');
-		this.datalist = this.root.querySelector('datalist');
+        this.root.appendChild(template.content.cloneNode(true));
+        this.input = this.root.querySelector('input');
+        this.datalist = this.root.querySelector('datalist');
 
-		this.input.addEventListener('input', e => {
-			const evento = new CustomEvent("eventofiltrar", {
-				composed: true,
-				detail: {filtro: this.input.value},
-				bubbles: true
-			});
-			this.root.dispatchEvent(evento);
-		});
+        this.input.addEventListener('input', e => {
+            const evento = new CustomEvent("eventofiltrar", {
+                composed: true,
+                detail: { filtro: this.input.value },
+                bubbles: true
+            });
+            this.root.dispatchEvent(evento);
+        });
 
-		this.addEventListener("datachange", e => {
-			this.renderizarOpciones();
-		})
-	}
+        this.addEventListener("datachange", e => {
+            this.renderizarOpciones();
+        })
+    }
 
-	static get observedAttributes() {
-		return ["placeholder", "auto", "identificador"];
-	}
+    renderizarOpciones() {
+        this.datalist.innerHTML = '';
+        let data = this.auto.split(",");
+        data.forEach(coincidencias => {
+            let option = document.createElement('option');
+            option.value = coincidencias.toUpperCase();
+            this.datalist.appendChild(option);
+        });
+    }
 
-	get opciones() {
-		return this._opciones;
-	}
+    static get observedAttributes() {
+        return ["placeholder", "auto", "identificador"];
+    }
 
-	set opciones(json) {
-		this._opciones = json;
-	}
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log(newValue);
+    }
 
-	get placeholder() {
-		return this.getAttribute("placeholder");
-	}
+    connectedCallback() {
+        console.log('se conecto');
+    }
 
-	get identificador() {
-		return this.getAttribute("identificador");
-	}
+    get opciones() {
+        return this._opciones;
+    }
 
-	get auto() {
-		return this.getAttribute("auto");
-	}
+    set opciones(json) {
+        this._opciones = json;
+    }
 
-	renderizarOpciones() {
-		this.datalist.innerHTML = '';
-		let data = this.auto.split(",");
-		data.forEach(coincidencias => {
-			let option = document.createElement('option');
-			option.value = coincidencias.toUpperCase();
-			this.datalist.appendChild(option);
-		});
-	}
+    get placeholder() {
+        return this.getAttribute("placeholder");
+    }
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		console.log(newValue);
-	}
+    get identificador() {
+        return this.getAttribute("identificador");
+    }
 
-	connectedCallback() {
-		console.log('se conecto');
-	}
+    get auto() {
+        return this.getAttribute("auto");
+    }
 
 }
 

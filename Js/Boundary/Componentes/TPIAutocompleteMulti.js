@@ -14,8 +14,8 @@ template.innerHTML = /*html*/ `
   .dropbtn {
     background-color: #4CAF50;
     color: white;
-    height: 20%;
-    width: 40%;
+    height: 15%;
+    width: 100%;
     padding: 2%;
     font-size: 16px;
     border: none;
@@ -29,7 +29,6 @@ template.innerHTML = /*html*/ `
 
   #input {
     border-box: box-sizing;
-    background-image: url('searchicon.png');
     background-position: 14px 12px;
     background-repeat: no-repeat;
     font-size: 16px;
@@ -54,12 +53,16 @@ template.innerHTML = /*html*/ `
     background-color: #f1f1f1;
     min-width: 35%;
     overflow: auto;
-    height: 300px;
+    height: 50vh;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    transition: 0.5s;
+    opacity: 0;
   }
 
   .show {
+    opacity: 1;
+    transition: 0.5s;
     display: block;
   }
 </style>
@@ -114,6 +117,7 @@ class TPIAutocompleteMulti extends HTMLElement {
                     this.seleccionados.delete(e.detail);
                 }
                 console.log(this.seleccionados);
+                this.identificadores = this.seleccionados;
             });
             this.contenido.appendChild(option);
         });
@@ -121,6 +125,7 @@ class TPIAutocompleteMulti extends HTMLElement {
 
     connectedCallback() {
         console.log('se conecto');
+        this.root.dispatchEvent(new CustomEvent("eventfilter", { composed: true, detail: { filtro: this.input.value }, bubbles: false }));
     }
 
     static get observedAttributes() { return ["btnlabel"] };
@@ -142,6 +147,10 @@ class TPIAutocompleteMulti extends HTMLElement {
 
     get identificadores() {
         return this._identificadores;
+    }
+
+    set identificadores(valores) {
+        this._identificadores = valores
     }
 
 }
