@@ -45,7 +45,7 @@ h2 span {
     margin-top: 1rem;
 }
 
-.input, .btn__submit, .btn__reset{
+.input, .btn__submit, .btn__reset {
     background-color: #EFEFEF;
     padding: .5rem;
     margin: .5rem 0;
@@ -73,16 +73,17 @@ h2 span {
     background-color: #4C9ED9;
 }
 
-.btn__reset:hover{
+.btn__reset:hover {
     background-color: #FA9535;
 }
 
 .btn_nuevo {
     padding: 5px 10px;
-    width:70px;
-    height:30px;
+    width: 70px;
+    height: 30px;
     background-color: #c3ff92;
 }
+
 .btn_nuevo:hover {
     background-color: #80ff60;
 }

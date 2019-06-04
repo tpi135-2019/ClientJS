@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="Css/style.css">
+    <link href="Css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
-
     <section id="page">
         <header>
+            <label style="color: #ffff">Diagnosticos asignadas a su placa:</label>
+
+            <input autofocus class="input" id="idplaca" required type="text">
+            <button type="button" id="btnD">buscar</button>
         </header>
         <aside></aside>
         <nav>
@@ -25,6 +27,8 @@
                 <a href="index.html">Home</a>
                 <a href="pages/vehiculo.html">registrar Vehiculo </a>
                 <a href="pages/reparacion.html">Reparaciones </a>
+                <a href="pages/diagnostico.html">Diagnosticos </a>
+
             </div>
             <script>
                 function toggleSidebar() {
@@ -33,20 +37,20 @@
             </script>
         </nav>
         <main>
-            <tpi-multi id="multi" btnlabel="Personal"></tpi-multi>
-            <tpi-tabla id="idtabla" first="0" pagesize="2" cabeceras="idMarca,nombre,activo,descripcion"></tpi-tabla>
+            <tpi-multi btnlabel="Personal" id="multi"></tpi-multi>
+            <tpi-tabla cabeceras="idDiagnostico,diagnostico,fecha,idVehiculo" first="0" id="tblReparacion" pagesize="2"></tpi-tabla>
         </main>
         <footer>
-            <a id="idgitF" href="https://github.com/kevin-Oz"><img src="images/github.png"></a>
+            <a href="https://github.com/kevin-Oz" id="idgitF"><img src="images/github.png"></a>
             <label for="idgitF">Kevin Figueroa</label> &nbsp;
-            <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="images/github.png"></a>
+            <a href="https://github.com/Dragonkiller69" id="idgitC"><img src="images/github.png"></a>
             <label for="idgitC">Kevin Chinchilla</label>
         </footer>
     </section>
 
 
-    <script type="module" src="Js/Boundary/Componentes/Libreria.js"></script>
-    <script type="module" src="Js/Boundary/frmTabla.js"></script>
+    <script src="Js/Boundary/Componentes/Libreria.js" type="module"></script>
+    <script src="Js/Boundary/Frmprincipal.js" type="module"></script>
 </body>
 
 </html>

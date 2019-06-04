@@ -20,22 +20,20 @@ document.addEventListener('cambio-opcion', evt => {
 });
 
 
-function llenado(){
-    let first= tabla.getAttribute("first");
-    let pageSize= tabla.getAttribute("pagesize");
-      controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data)=> {
+function llenado() {
+    let first = tabla.getAttribute("first");
+    let pageSize = tabla.getAttribute("pagesize");
+    controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data) => {
 
         let tabla = document.querySelector("#idtabla");
         tabla.setAttribute("datos", JSON.stringify(data));
     });
 }
 
-
 let section = document.querySelector("#multi");
 section.addEventListener('eventfilter', e => {
     let filtro = e.detail.filtro;
-    controlador.find(`proceso/1/pasos?paso=${filtro}`).
-    then(data => {
+    controlador.find(`proceso/1/pasos?paso=${filtro}`).then(data => {
         let mapaPasos = new Map();
         if (data !== null) {
             data.forEach(dato => {
