@@ -9,8 +9,7 @@
 <body>
 
 <section id="page">
-    <header>
-    </header>
+    <header>Header</header>
     <aside></aside>
     <nav>
         <div id="sidebar">
@@ -27,37 +26,23 @@
         <script>function toggleSidebar(){document.getElementById("sidebar").classList.toggle('active');}</script>
     </nav>
     <main>
+
         <div class="container">
             <div class="form__top">
-                <h2><span></span>Ingreso <span> Reparacion</span></h2>
+                <h2><span></span>Ingreso <span> Diagnostico</span></h2>
             </div>
             <form id="frmRegistro" class="form__reg" action="">
 
-                <label for="test" style=" ">seleccione el Diagnostico</label>
+                <label for="test" style=" font-family: 'Lato', sans-serif">Placa del Vehiculo</label>
                 <div>
-                    <tpi-complete  class="input"  type="text" id="idDiagnostico"  required autofocus ></tpi-complete>
+                    <tpi-complete  class="input"  type="text" id="idplaca"  required autofocus ></tpi-complete>
                 </div>
+                <input class="input" id="obs" type="text" placeholder=" diagnostico" >
+
                 <div>
                     <label for="dater">Fecha: </label>
                     <input type="date" id="dater" class="input" placeholder="fecha" name="fecha">
                 </div>
-
-                <label for="test" style=" font-family: 'Lato', sans-serif;">seleccion de personal</label>
-                <div>
-                    <tpi-complete class="input"  type="text" id="test" required autofocus ></tpi-complete>
-                </div>
-                <label for="test">Seleccion de piezas </label>
-                <div>
-                    <tpi-complete class="input" type="text" id="test2" placeholder="Seleccione el Dui del Propietario"></tpi-complete>
-                </div>
-
-                <label for="test">Pasos Completados</label>
-                <div>
-                    <tpi-complete class="input" type="text" id="test2" placeholder="Seleccione el Dui del Propietario"></tpi-complete>
-                </div>
-
-                <input class="input" id="obs" type="text" placeholder="  observaciones" >
-
 
                 <div class="btn__form">
                     <input class="btn__submit"  type="submit" value="REGISTRAR">
@@ -66,6 +51,7 @@
             </form>
 
         </div>
+
     </main>
     <footer>
         <a id="idgitF" href="https://github.com/kevin-Oz" ><img src="../images/github.png"></a>
@@ -76,8 +62,7 @@
     </footer>
 </section>
 <script type="module" src="../Js/Boundary/Componentes/Libreria.js"></script >
-<script type="module" src="../Js/Boundary/frmReparacion.js"></script >
-
+<script type="module" src="../Js/Boundary/frmDiagnostico.js"></script >
 
 
 </body>

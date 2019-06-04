@@ -12,8 +12,8 @@ body{
     grid-template-areas: "nav head"
     "as  main"
     "foot  foot";
-    grid-template-rows: 60px 2fr 30px;
-    grid-template-columns: 150px 1fr;
+    grid-template-rows: 2fr 15fr 1fr;
+    grid-template-columns: 1fr 16fr;
 }
 #page > header {
     grid-area: head;
@@ -31,9 +31,9 @@ body{
 }
 
 #page > main {
-    padding: 40px;
+    padding: 20px;
     grid-area: main;
-    margin: 20px;
+    margin: 5px;
     border: #2a2a2a;
     background-color: #444;
 }
