@@ -15,77 +15,75 @@ template.innerHTML = `
         }
     input:focus {
     border-bottom: solid #F39B53 .2rem;
-}
-
     </style>
      
 `;
 
 class TPIAutocomplete extends HTMLElement {
 
-    constructor() {
-        super();
-        this.root = this.attachShadow({mode: 'open'});
+	constructor() {
+		super();
+		this.root = this.attachShadow({mode: 'open'});
 
-        this.root.appendChild(template.content.cloneNode(true));
-        this.input = this.root.querySelector('input');
-        this.datalist = this.root.querySelector('datalist');
+		this.root.appendChild(template.content.cloneNode(true));
+		this.input = this.root.querySelector('input');
+		this.datalist = this.root.querySelector('datalist');
 
-        this.input.addEventListener('input', e => {
-            const evento = new CustomEvent("eventofiltrar", {
-                composed: true,
-                detail: {filtro: this.input.value},
-                bubbles: true
-            });
-            this.root.dispatchEvent(evento);
-        });
+		this.input.addEventListener('input', e => {
+			const evento = new CustomEvent("eventofiltrar", {
+				composed: true,
+				detail: {filtro: this.input.value},
+				bubbles: true
+			});
+			this.root.dispatchEvent(evento);
+		});
 
-        this.addEventListener("datachange", e => {
-            this.renderizarOpciones();
-        })
-    }
+		this.addEventListener("datachange", e => {
+			this.renderizarOpciones();
+		})
+	}
 
-    renderizarOpciones() {
-        this.datalist.innerHTML = '';
-        let data = this.auto.split(",");
-        data.forEach(coincidencias => {
-            let option = document.createElement('option');
-            option.value = coincidencias.toUpperCase();
-            this.datalist.appendChild(option);
-        });
-    }
+	static get observedAttributes() {
+		return ["placeholder", "auto", "identificador"];
+	}
 
-    static get observedAttributes() {
-        return ["placeholder", "auto", "identificador"];
-    }
+	get opciones() {
+		return this._opciones;
+	}
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        console.log(newValue);
-    }
+	set opciones(json) {
+		this._opciones = json;
+	}
 
-    connectedCallback() {
-        console.log('se conecto');
-    }
+	get placeholder() {
+		return this.getAttribute("placeholder");
+	}
 
-    get opciones() {
-        return this._opciones;
-    }
+	get identificador() {
+		return this.getAttribute("identificador");
+	}
 
-    set opciones(json) {
-        this._opciones = json;
-    }
+	get auto() {
+		return this.getAttribute("auto");
+	}
 
-    get placeholder() {
-        return this.getAttribute("placeholder");
-    }
+	renderizarOpciones() {
+		this.datalist.innerHTML = '';
+		let data = this.auto.split(",");
+		data.forEach(coincidencias => {
+			let option = document.createElement('option');
+			option.value = coincidencias.toUpperCase();
+			this.datalist.appendChild(option);
+		});
+	}
 
-    get identificador() {
-        return this.getAttribute("identificador");
-    }
+	attributeChangedCallback(name, oldValue, newValue) {
+		console.log(newValue);
+	}
 
-    get auto() {
-        return this.getAttribute("auto");
-    }
+	connectedCallback() {
+		console.log('se conecto');
+	}
 
 }
 

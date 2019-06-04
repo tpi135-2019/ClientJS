@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../Css/style.css" type="text/css">
-    <link rel="stylesheet" href="../Css/formStyle.css" type="text/css">
+    <link href="../Css/style.css" rel="stylesheet" type="text/css">
+    <link href="../Css/formStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -23,7 +23,9 @@
             <a href="reparacion.html">Reparaciones </a>
             <a href="diagnostico.html">Diagnostico </a>
         </div>
-        <script>function toggleSidebar(){document.getElementById("sidebar").classList.toggle('active');}</script>
+        <script>function toggleSidebar() {
+			document.getElementById("sidebar").classList.toggle('active');
+		}</script>
     </nav>
     <main>
 
@@ -31,21 +33,21 @@
             <div class="form__top">
                 <h2><span></span>Ingreso <span> Diagnostico</span></h2>
             </div>
-            <form id="frmRegistro" class="form__reg" action="">
+            <form action="" class="form__reg" id="frmRegistroD">
 
                 <label for="test" style=" font-family: 'Lato', sans-serif">Placa del Vehiculo</label>
                 <div>
-                    <tpi-complete  class="input"  type="text" id="idplaca"  required autofocus ></tpi-complete>
+                    <tpi-complete autofocus class="input" id="idplaca" required type="text"></tpi-complete>
                 </div>
-                <input class="input" id="obs" type="text" placeholder=" diagnostico" >
+                <input class="input" id="obs" placeholder=" diagnostico" type="text">
 
                 <div>
                     <label for="dater">Fecha: </label>
-                    <input type="date" id="dater" class="input" placeholder="fecha" name="fecha">
+                    <input class="input" id="dater" max="2019-06-04" name="fecha" placeholder="fecha" type="date">
                 </div>
 
                 <div class="btn__form">
-                    <input class="btn__submit"  type="submit" value="REGISTRAR">
+                    <input class="btn__submit" type="submit" value="REGISTRAR">
                     <input class="btn__reset" type="reset" value="LIMPIAR">
                 </div>
             </form>
@@ -54,15 +56,15 @@
 
     </main>
     <footer>
-        <a id="idgitF" href="https://github.com/kevin-Oz" ><img src="../images/github.png"></a>
+        <a href="https://github.com/kevin-Oz" id="idgitF"><img src="../images/github.png"></a>
         <label for="idgitF">Kevin Figueroa</label>
         &nbsp;
-        <a id="idgitC" href="https://github.com/Dragonkiller69" ><img src="../images/github.png"></a>
+        <a href="https://github.com/Dragonkiller69" id="idgitC"><img src="../images/github.png"></a>
         <label for="idgitC">Kevin Chinchilla</label>
     </footer>
 </section>
-<script type="module" src="../Js/Boundary/Componentes/Libreria.js"></script >
-<script type="module" src="../Js/Boundary/frmDiagnostico.js"></script >
+<script src="../Js/Boundary/Componentes/Libreria.js" type="module"></script>
+<script src="../Js/Boundary/frmDiagnostico.js" type="module"></script>
 
 
 </body>
