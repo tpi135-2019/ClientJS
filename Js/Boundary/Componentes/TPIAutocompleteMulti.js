@@ -1,5 +1,3 @@
-import TPICheckbox from './TPICheckbox.js';
-
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `
 <div class="dropdown">
@@ -67,82 +65,88 @@ template.innerHTML = /*html*/ `
 
 class TPIAutocompleteMulti extends HTMLElement {
 
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        this.root = this.attachShadow({ mode: 'open' });
-        this.root.appendChild(template.content.cloneNode(true));
-        this.dropdown = this.root.querySelector("#myDropdown");
-        this.contenido = this.root.querySelector("#contenido");
-        this.input = this.root.querySelector("input");
-        this.button = this.root.querySelector("button");
-        this.button.addEventListener('click', () => {
-            this.dropdown.classList.toggle("show");
-        });
-        this.input.addEventListener('input', e => {
-            const evento = new CustomEvent("eventfilter", { composed: true, detail: { filtro: this.input.value }, bubbles: true });
-            this.root.dispatchEvent(evento);
-        });
-        this.addEventListener('datachange', e => {
-            this.opciones = e.detail.response;
-            this.renderizarOpciones();
-        })
-        this.seleccionados = new Map();
-    }
+		this.root = this.attachShadow({mode: 'open'});
+		this.root.appendChild(template.content.cloneNode(true));
+		this.dropdown = this.root.querySelector("#myDropdown");
+		this.contenido = this.root.querySelector("#contenido");
+		this.input = this.root.querySelector("input");
+		this.button = this.root.querySelector("button");
+		this.button.addEventListener('click', () => {
+			this.dropdown.classList.toggle("show");
+		});
+		this.input.addEventListener('input', e => {
+			const evento = new CustomEvent("eventfilter", {
+				composed: true,
+				detail: {filtro: this.input.value},
+				bubbles: true
+			});
+			this.root.dispatchEvent(evento);
+		});
+		this.addEventListener('datachange', e => {
+			this.opciones = e.detail.response;
+			this.renderizarOpciones();
+		})
+		this.seleccionados = new Map();
+	}
 
-    renderizarOpciones() {
-        /*let hijos = Array.from(this.contenido.children);
-        console.log(this.opciones)
-        let opcionesFiltradas = Array.from(this.opciones, ([key, value]) => {
-            hijos.forEach(child => {
-                if (key == child.getAttribute('id')) {
-                    this.opciones.delete(key);
-                }
-            });
-        });
-        console.log(this.opciones)*/
-        this.contenido.innerHTML = '';
-        this.opciones.forEach((opcion, id) => {
-            let option = document.createElement('tpi-checkbox');
-            option.setAttribute('label', opcion);
-            option.setAttribute('id', id);
+	static get observedAttributes() {
+		return ["btnlabel"]
+	};
 
-            option.addEventListener('onToggle', e => {
-                if (option.checked && !Array.from(this.seleccionados).some((value, id) => id == e.detail)) {
-                    this.seleccionados.set(e.detail, e.detail);
-                } else if (!option.checked) {
-                    this.seleccionados.delete(e.detail);
-                }
-                console.log(this.seleccionados);
-            });
-            this.contenido.appendChild(option);
-        });
-    }
+	get opciones() {
+		return this._opciones;
+	}
 
-    connectedCallback() {
-        console.log('se conecto');
-    }
+	set opciones(datos) {
+		this._opciones = datos;
+	}
 
-    static get observedAttributes() { return ["btnlabel"] };
+	get identificadores() {
+		return this._identificadores;
+	}
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        this._btnlabel = newValue;
-        if (this.hasAttribute('btnlabel')) {
-            this.button.innerText = this._btnlabel;
-        }
-    }
+	renderizarOpciones() {
+		/*let hijos = Array.from(this.contenido.children);
+		console.log(this.opciones)
+		let opcionesFiltradas = Array.from(this.opciones, ([key, value]) => {
+			hijos.forEach(child => {
+				if (key == child.getAttribute('id')) {
+					this.opciones.delete(key);
+				}
+			});
+		});
+		console.log(this.opciones)*/
+		this.contenido.innerHTML = '';
+		this.opciones.forEach((opcion, id) => {
+			let option = document.createElement('tpi-checkbox');
+			option.setAttribute('label', opcion);
+			option.setAttribute('id', id);
 
-    get opciones() {
-        return this._opciones;
-    }
+			option.addEventListener('onToggle', e => {
+				if (option.checked && !Array.from(this.seleccionados).some((value, id) => id == e.detail)) {
+					this.seleccionados.set(e.detail, e.detail);
+				} else if (!option.checked) {
+					this.seleccionados.delete(e.detail);
+				}
+				console.log(this.seleccionados);
+			});
+			this.contenido.appendChild(option);
+		});
+	}
 
-    set opciones(datos) {
-        this._opciones = datos;
-    }
+	connectedCallback() {
+		console.log('se conecto');
+	}
 
-    get identificadores() {
-        return this._identificadores;
-    }
+	attributeChangedCallback(name, oldValue, newValue) {
+		this._btnlabel = newValue;
+		if (this.hasAttribute('btnlabel')) {
+			this.button.innerText = this._btnlabel;
+		}
+	}
 
 }
 
