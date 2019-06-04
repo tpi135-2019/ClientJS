@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="Css/style.css">
 </head>
+
 <body>
 
-<section id="page">
-    <header>
-    </header>
-    <aside></aside>
-    <nav>
-        <div id="sidebar">
-            <div class="toggle-btn" onclick="toggleSidebar()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <section id="page">
+        <header>
+        </header>
+        <aside></aside>
+        <nav>
+            <div id="sidebar">
+                <div class="toggle-btn" onclick="toggleSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
                 <a href="index.html">Home</a>
-            <a href="pages/vehiculo.html">registrar Vehiculo </a>
-            <a href="pages/reparacion.html">Reparaciones </a>
-        </div>
-        <script>function toggleSidebar(){document.getElementById("sidebar").classList.toggle('active');}</script>
-    </nav>
-    <main>
-        <tpi-tabla id="idtabla" first="0" pagesize="2" cabeceras="idMarca,nombre,activo,descripcion"></tpi-tabla >
-    </main>
-    <footer>
-        <a id="idgitF" href="https://github.com/kevin-Oz" ><img src="images/github.png"></a>
-        <label for="idgitF">Kevin Figueroa</label>
-         &nbsp;
-        <a id="idgitC" href="https://github.com/Dragonkiller69" ><img src="images/github.png"></a>
-        <label for="idgitC">Kevin Chinchilla</label>
-    </footer>
-</section>
+                <a href="pages/vehiculo.html">registrar Vehiculo </a>
+                <a href="pages/reparacion.html">Reparaciones </a>
+            </div>
+            <script>
+                function toggleSidebar() {
+                    document.getElementById("sidebar").classList.toggle('active');
+                }
+            </script>
+        </nav>
+        <main>
+            <tpi-multi id="multi" btnlabel="Personal"></tpi-multi>
+            <tpi-tabla id="idtabla" first="0" pagesize="2" cabeceras="idMarca,nombre,activo,descripcion"></tpi-tabla>
+        </main>
+        <footer>
+            <a id="idgitF" href="https://github.com/kevin-Oz"><img src="images/github.png"></a>
+            <label for="idgitF">Kevin Figueroa</label> &nbsp;
+            <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="images/github.png"></a>
+            <label for="idgitC">Kevin Chinchilla</label>
+        </footer>
+    </section>
 
-<script type="module" src="Js/Boundary/Componentes/Libreria.js"></script >
-<script type="module" src="Js/Boundary/frmTabla.js"></script >
+    <script type="module" src="Js/Boundary/Componentes/Libreria.js"></script>
+    <script type="module" src="Js/Boundary/frmTabla.js"></script>
 </body>
+
 </html>
