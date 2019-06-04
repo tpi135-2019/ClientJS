@@ -19,12 +19,12 @@ document.addEventListener('cambio-opcion', evt => {
     llenado();
 });
 
-function llenado() {
 
-    let first = tabla.getAttribute("first");
-    let pageSize = tabla.getAttribute("pagesize");
-    //`?first=${first}&pagesize=${pageSize}`
-    controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data) => {
+function llenado(){
+    let first= tabla.getAttribute("first");
+    let pageSize= tabla.getAttribute("pagesize");
+      controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data)=> {
+
         let tabla = document.querySelector("#idtabla");
         tabla.setAttribute("datos", JSON.stringify(data));
     });
