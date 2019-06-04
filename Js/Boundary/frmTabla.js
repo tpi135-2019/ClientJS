@@ -6,9 +6,20 @@ let tabla = document.querySelector("#idtabla");
 let first = tabla.getAttribute("first");
 let pageSize = tabla.getAttribute("pagesize");
 
-controlador.find(`marca?first=${first}&pagesize=${pageSize}`).then((data) => {
+controlador.find(`diagnostico?first=${first}&pagesize=${pageSize}`).then((data) => {
     let tabla = document.querySelector("#idtabla");
-    tabla.setAttribute("datos", JSON.stringify(data));
+    console.log(data)
+    let nuevoJson = data.map(diagnostico => {
+        return {
+            "diagnostico": diagnostico.diagnostico,
+            "fecha": diagnostico.fecha,
+            "idDiagnostico": diagnostico.idDiagnostico,
+            "idVehiculo": diagnostico.idVehiculo.idVehiculo
+        }
+    })
+    console.log(nuevoJson)
+
+    tabla.setAttribute("datos", JSON.stringify(nuevoJson));
 });
 
 document.addEventListener("Click_btn", e => {
@@ -31,7 +42,7 @@ function llenado() {
 }
 
 
-let section = document.querySelector("#multi");
+/*let section = document.querySelector("#multi");
 section.addEventListener('eventfilter', e => {
     let filtro = e.detail.filtro;
     controlador.find(`proceso/1/pasos?paso=${filtro}`).
@@ -46,4 +57,4 @@ section.addEventListener('eventfilter', e => {
         e.target.dispatchEvent(evento);
 
     });
-});
+});*/

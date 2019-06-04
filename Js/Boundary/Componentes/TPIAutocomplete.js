@@ -1,6 +1,6 @@
 const template = document.createElement('template');
-template.innerHTML = `
-<input list="opciones">
+template.innerHTML = /*html*/ `
+<input list="opciones" >
     <datalist id="opciones">
     </datalist>
 </input>
@@ -25,7 +25,7 @@ class TPIAutocomplete extends HTMLElement {
 
     constructor() {
         super();
-        this.root = this.attachShadow({mode: 'open'});
+        this.root = this.attachShadow({ mode: 'open' });
 
         this.root.appendChild(template.content.cloneNode(true));
         this.input = this.root.querySelector('input');
@@ -34,7 +34,7 @@ class TPIAutocomplete extends HTMLElement {
         this.input.addEventListener('input', e => {
             const evento = new CustomEvent("eventofiltrar", {
                 composed: true,
-                detail: {filtro: this.input.value},
+                detail: { filtro: this.input.value },
                 bubbles: true
             });
             this.root.dispatchEvent(evento);
