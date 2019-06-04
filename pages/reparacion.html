@@ -1,87 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="../Css/style.css" rel="stylesheet" type="text/css">
-    <link href="../Css/formStyle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../Css/style.css" type="text/css">
+    <link rel="stylesheet" href="../Css/formStyle.css" type="text/css">
 </head>
+
 <body>
 
-<section id="page">
-    <header>
-    </header>
-    <aside></aside>
-    <nav>
-        <div id="sidebar">
-            <div class="toggle-btn" onclick="toggleSidebar()">
-                <span></span>
-                <span></span>
-                <span></span>
+    <section id="page">
+        <header>
+        </header>
+        <aside></aside>
+        <nav>
+            <div id="sidebar">
+                <div class="toggle-btn" onclick="toggleSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="../index.html">Home</a>
+                <a href="vehiculo.html">registrar Vehiculo </a>
+                <a href="reparacion.html">Reparaciones </a>
+                <a href="diagnostico.html">Diagnostico </a>
             </div>
-            <a href="../index.html">Home</a>
-            <a href="vehiculo.html">registrar Vehiculo </a>
-            <a href="reparacion.html">Reparaciones </a>
-            <a href="diagnostico.html">Diagnostico </a>
-        </div>
-        <script>function toggleSidebar() {
-			document.getElementById("sidebar").classList.toggle('active');
-		}</script>
-    </nav>
-    <main>
-        <div class="container">
-            <div class="form__top">
-                <h2><span></span>Ingreso <span> Reparacion</span></h2>
+            <script>
+                function toggleSidebar() {
+                    document.getElementById("sidebar").classList.toggle('active');
+                }
+            </script>
+        </nav>
+        <main>
+            <div class="container">
+                <div class="form__top">
+                    <h2><span></span>Ingreso <span> Reparacion</span></h2>
+                </div>
+                <form id="frmRegistro" class="form__reg" action="">
+
+                    <label for="test" style=" ">seleccione el Diagnostico</label>
+                    <div>
+                        <tpi-complete class="input" type="text" id="idDiagnostico" required autofocus></tpi-complete>
+                    </div>
+                    <div>
+                        <label for="dater">Fecha: </label>
+                        <input type="date" id="dater" class="input" placeholder="fecha" name="fecha" required>
+                    </div>
+
+                    <label for="test" style=" font-family: 'Lato', sans-serif;">seleccion de personal</label>
+                    <div>
+                        <tpi-multi id="personal" btnlabel="Personal" required></tpi-multi>
+                    </div>
+                    <label for="test">Seleccion de piezas </label>
+                    <div>
+                        <tpi-multi id="piezas" btnlabel="Piezas" required></tpi-multi>
+                    </div>
+
+                    <label for="test">Pasos Completados</label>
+                    <div>
+                        <tpi-multi id="pasos" btnlabel="Pasos" required></tpi-multi>
+                    </div>
+
+                    <input class="input" id="observaciones" type="text" placeholder="  observaciones">
+
+
+                    <div class="btn__form">
+                        <input class="btn__submit" type="submit" value="REGISTRAR">
+                        <input class="btn__reset" type="reset" value="LIMPIAR">
+                    </div>
+                </form>
+
             </div>
-            <form action="" class="form__reg" id="frmRegistro">
+        </main>
+        <footer>
+            <a id="idgitF" href="https://github.com/kevin-Oz"><img src="../images/github.png"></a>
+            <label for="idgitF">Kevin Figueroa</label> &nbsp;
+            <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="../images/github.png"></a>
+            <label for="idgitC">Kevin Chinchilla</label>
+        </footer>
+    </section>
+    <script type="module" src="../Js/Boundary/Componentes/Libreria.js"></script>
+    <script type="module" src="../Js/Boundary/frmReparacion.js"></script>
 
-                <label for="test" style=" ">seleccione el Diagnostico</label>
-                <div>
-                    <tpi-complete autofocus class="input" id="idDiagnostico" required type="text"></tpi-complete>
-                </div>
-                <div>
-                    <label for="dater">Fecha: </label>
-                    <input class="input" id="dater" name="fecha" placeholder="fecha" type="date">
-                </div>
-
-                <label for="test" style=" font-family: 'Lato', sans-serif;">seleccion de personal</label>
-                <div>
-                    <tpi-complete autofocus class="input" id="test" required type="text"></tpi-complete>
-                </div>
-                <label for="test">Seleccion de piezas </label>
-                <div>
-                    <tpi-complete class="input" id="test2" placeholder="Seleccione el Dui del Propietario"
-                                  type="text"></tpi-complete>
-                </div>
-
-                <label for="test">Pasos Completados</label>
-                <div>
-                    <tpi-complete class="input" id="test2" placeholder="Seleccione el Dui del Propietario"
-                                  type="text"></tpi-complete>
-                </div>
-
-                <input class="input" id="obs" placeholder="  observaciones" type="text">
-
-
-                <div class="btn__form">
-                    <input class="btn__submit" type="submit" value="REGISTRAR">
-                    <input class="btn__reset" type="reset" value="LIMPIAR">
-                </div>
-            </form>
-
-        </div>
-    </main>
-    <footer>
-        <a href="https://github.com/kevin-Oz" id="idgitF"><img src="../images/github.png"></a>
-        <label for="idgitF">Kevin Figueroa</label>
-        &nbsp;
-        <a href="https://github.com/Dragonkiller69" id="idgitC"><img src="../images/github.png"></a>
-        <label for="idgitC">Kevin Chinchilla</label>
-    </footer>
-</section>
-<script src="../Js/Boundary/Componentes/Libreria.js" type="module"></script>
-<script src="../Js/Boundary/frmReparacion.js" type="module"></script>
 
 
 </body>
+
 </html>

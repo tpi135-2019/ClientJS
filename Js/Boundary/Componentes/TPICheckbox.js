@@ -95,34 +95,32 @@ a { color: black;
 
 export default class TPICheckbox extends HTMLElement {
 
-	constructor() {
-		super();
-		this.root = this.attachShadow({mode: 'open'});
-		this.root.appendChild(template.content.cloneNode(true));
-		this.label = this.root.querySelector('#label');
-		this.checkbox = this.root.querySelector('input');
-		this.checkbox.addEventListener('click', (e) => {
-			this.dispatchEvent(new CustomEvent('onToggle', {detail: this.getAttribute('id')}));
-		});
+    constructor() {
+        super();
+        this.root = this.attachShadow({ mode: 'open' });
+        this.root.appendChild(template.content.cloneNode(true));
+        this.label = this.root.querySelector('#label');
+        this.checkbox = this.root.querySelector('input');
+        this.checkbox.addEventListener('click', (e) => {
+            this.dispatchEvent(new CustomEvent('onToggle', { detail: this.getAttribute('id') }));
+        });
 
-	}
+    }
 
-	static get observedAttributes() {
-		return ["label"]
-	};
+    connectedCallback() {
+        console.log('se conecto cehckbox');
+    }
 
-	get checked() {
-		return this.checkbox.checked;
-	}
+    static get observedAttributes() { return ["label"] };
 
-	connectedCallback() {
-		console.log('se conecto cehckbox');
-	}
+    attributeChangedCallback(name, oldValue, newValue) {
+        this._label = newValue;
+        this.label.innerText = this._label;
+    }
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		this._label = newValue;
-		this.label.innerText = this._label;
-	}
+    get checked() {
+        return this.checkbox.checked;
+    }
 }
 
 customElements.define("tpi-checkbox", TPICheckbox);

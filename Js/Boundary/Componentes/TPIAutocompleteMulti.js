@@ -1,3 +1,5 @@
+import TPICheckbox from './TPICheckbox.js';
+
 const template = document.createElement('template');
 template.innerHTML = /*html*/ `
 <div class="dropdown">
@@ -12,8 +14,8 @@ template.innerHTML = /*html*/ `
   .dropbtn {
     background-color: #4CAF50;
     color: white;
-    height: 20%;
-    width: 40%;
+    height: 15%;
+    width: 100%;
     padding: 2%;
     font-size: 16px;
     border: none;
@@ -27,7 +29,6 @@ template.innerHTML = /*html*/ `
 
   #input {
     border-box: box-sizing;
-    background-image: url('searchicon.png');
     background-position: 14px 12px;
     background-repeat: no-repeat;
     font-size: 16px;
@@ -52,12 +53,16 @@ template.innerHTML = /*html*/ `
     background-color: #f1f1f1;
     min-width: 35%;
     overflow: auto;
-    height: 300px;
+    height: 50vh;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    transition: 0.5s;
+    opacity: 0;
   }
 
   .show {
+    opacity: 1;
+    transition: 0.5s;
     display: block;
   }
 </style>
@@ -65,88 +70,88 @@ template.innerHTML = /*html*/ `
 
 class TPIAutocompleteMulti extends HTMLElement {
 
-	constructor() {
-		super();
+    constructor() {
+        super();
 
-		this.root = this.attachShadow({mode: 'open'});
-		this.root.appendChild(template.content.cloneNode(true));
-		this.dropdown = this.root.querySelector("#myDropdown");
-		this.contenido = this.root.querySelector("#contenido");
-		this.input = this.root.querySelector("input");
-		this.button = this.root.querySelector("button");
-		this.button.addEventListener('click', () => {
-			this.dropdown.classList.toggle("show");
-		});
-		this.input.addEventListener('input', e => {
-			const evento = new CustomEvent("eventfilter", {
-				composed: true,
-				detail: {filtro: this.input.value},
-				bubbles: true
-			});
-			this.root.dispatchEvent(evento);
-		});
-		this.addEventListener('datachange', e => {
-			this.opciones = e.detail.response;
-			this.renderizarOpciones();
-		})
-		this.seleccionados = new Map();
-	}
+        this.root = this.attachShadow({ mode: 'open' });
+        this.root.appendChild(template.content.cloneNode(true));
+        this.dropdown = this.root.querySelector("#myDropdown");
+        this.contenido = this.root.querySelector("#contenido");
+        this.input = this.root.querySelector("input");
+        this.button = this.root.querySelector("button");
+        this.button.addEventListener('click', () => {
+            this.dropdown.classList.toggle("show");
+        });
+        this.input.addEventListener('input', e => {
+            const evento = new CustomEvent("eventfilter", { composed: true, detail: { filtro: this.input.value }, bubbles: true });
+            this.root.dispatchEvent(evento);
+        });
+        this.addEventListener('datachange', e => {
+            this.opciones = e.detail.response;
+            this.renderizarOpciones();
+        })
+        this.seleccionados = new Map();
+    }
 
-	static get observedAttributes() {
-		return ["btnlabel"]
-	};
+    renderizarOpciones() {
+        /*let hijos = Array.from(this.contenido.children);
+        console.log(this.opciones)
+        let opcionesFiltradas = Array.from(this.opciones, ([key, value]) => {
+            hijos.forEach(child => {
+                if (key == child.getAttribute('id')) {
+                    this.opciones.delete(key);
+                }
+            });
+        });
+        console.log(this.opciones)*/
+        this.contenido.innerHTML = '';
+        this.opciones.forEach((opcion, id) => {
+            let option = document.createElement('tpi-checkbox');
+            option.setAttribute('label', opcion);
+            option.setAttribute('id', id);
 
-	get opciones() {
-		return this._opciones;
-	}
+            option.addEventListener('onToggle', e => {
+                if (option.checked && !Array.from(this.seleccionados).some((value, id) => id == e.detail)) {
+                    this.seleccionados.set(e.detail, e.detail);
+                } else if (!option.checked) {
+                    this.seleccionados.delete(e.detail);
+                }
+                console.log(this.seleccionados);
+                this.identificadores = this.seleccionados;
+            });
+            this.contenido.appendChild(option);
+        });
+    }
 
-	set opciones(datos) {
-		this._opciones = datos;
-	}
+    connectedCallback() {
+        console.log('se conecto');
+        this.root.dispatchEvent(new CustomEvent("eventfilter", { composed: true, detail: { filtro: this.input.value }, bubbles: false }));
+    }
 
-	get identificadores() {
-		return this._identificadores;
-	}
+    static get observedAttributes() { return ["btnlabel"] };
 
-	renderizarOpciones() {
-		/*let hijos = Array.from(this.contenido.children);
-		console.log(this.opciones)
-		let opcionesFiltradas = Array.from(this.opciones, ([key, value]) => {
-			hijos.forEach(child => {
-				if (key == child.getAttribute('id')) {
-					this.opciones.delete(key);
-				}
-			});
-		});
-		console.log(this.opciones)*/
-		this.contenido.innerHTML = '';
-		this.opciones.forEach((opcion, id) => {
-			let option = document.createElement('tpi-checkbox');
-			option.setAttribute('label', opcion);
-			option.setAttribute('id', id);
+    attributeChangedCallback(name, oldValue, newValue) {
+        this._btnlabel = newValue;
+        if (this.hasAttribute('btnlabel')) {
+            this.button.innerText = this._btnlabel;
+        }
+    }
 
-			option.addEventListener('onToggle', e => {
-				if (option.checked && !Array.from(this.seleccionados).some((value, id) => id == e.detail)) {
-					this.seleccionados.set(e.detail, e.detail);
-				} else if (!option.checked) {
-					this.seleccionados.delete(e.detail);
-				}
-				console.log(this.seleccionados);
-			});
-			this.contenido.appendChild(option);
-		});
-	}
+    get opciones() {
+        return this._opciones;
+    }
 
-	connectedCallback() {
-		console.log('se conecto');
-	}
+    set opciones(datos) {
+        this._opciones = datos;
+    }
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		this._btnlabel = newValue;
-		if (this.hasAttribute('btnlabel')) {
-			this.button.innerText = this._btnlabel;
-		}
-	}
+    get identificadores() {
+        return this._identificadores;
+    }
+
+    set identificadores(valores) {
+        this._identificadores = valores
+    }
 
 }
 
