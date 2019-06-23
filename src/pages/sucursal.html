@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sucursal</title>
+
+    <link rel="stylesheet" href="../../src/Css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../src/Css/formStyle.css" type="text/css">
+    <link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+    <link rel="import" href="../../bower_components/vaadin-button/vaadin-button.html">
+    <link rel="import" href="../../bower_components/vaadin-text-field/vaadin-text-field.html">
+    <link rel="import" href="../../bower_components/vaadin-notification/vaadin-notification.html">
+
+
+</head>
+<body>
+<section id="page">
+    <header>
+    </header>
+<aside></aside>
+<nav>
+    <div id="sidebar">
+        <div class="toggle-btn" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="../index.html">Home</a>
+        <a href="vehiculo.html">registrar Vehiculo </a>
+        <a href="reparacion.html">Reparaciones </a>
+        <a href="diagnostico.html">Diagnostico </a>
+    </div>
+    <script>
+		function toggleSidebar() {
+			document.getElementById("sidebar").classList.toggle('active');
+		}
+    </script>
+</nav>
+<main>
+
+    <label for="sucursal" style=" " >Nombre del Taller</label>
+    <div>
+        <tpi-complete class="input" type="text" id="sucursal" required autofocus> </tpi-complete>
+    </div>
+
+    <vaadin-grid page-size="1" style="height: 150px;">
+        <vaadin-grid-column  path="idSucursal" header="id" width="1em"></vaadin-grid-column>
+        <vaadin-grid-column id="name" width="10em" path="nombre" ></vaadin-grid-column>
+        <vaadin-grid-column path="direccion"  width="14em" header="Direccion" ></vaadin-grid-column>
+        <vaadin-grid-column path="telefono" header="Telefono"></vaadin-grid-column>
+        <vaadin-grid-column path="activo"  width="3em" id="activo"></vaadin-grid-column>
+
+    </vaadin-grid>
+    <div id="pages"></div>
+
+    <vaadin-notification duration="4000" position="top-end"></vaadin-notification>
+
+</main>
+<footer>
+    <a id="idgitF" href="https://github.com/kevin-Oz"><img src="../../src/images/github.png"></a>
+    <label for="idgitF">Kevin Figueroa</label> &nbsp;
+    <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="../../src/images/github.png"></a>
+    <label for="idgitC">Kevin Chinchilla</label>
+</footer>
+</section>
+
+
+<script type="module" src="../Js/Boundary/Componentes/Libreria.js"></script>
+<script type="module" src="../Js/Boundary/frmSucursal.js"></script>
+</body>
+</html>

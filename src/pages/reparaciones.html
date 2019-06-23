@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reparacion</title>
+    <link rel="stylesheet" href="../../src/Css/style.css" type="text/css">
+
+    <link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+    <link rel="import" href="../../bower_components/vaadin-button/vaadin-button.html">
+    <link rel="import" href="../../bower_components/vaadin-text-field/vaadin-text-field.html">
+    <link rel="import" href="../../bower_components/vaadin-notification/vaadin-notification.html">
+
+    <link rel="import" href="../../bower_components/vaadin-accordion/vaadin-accordion.html">
+</head>
+<body>
+<section id="page">
+    <header>
+    </header>
+    <aside></aside>
+    <nav>
+        <div id="sidebar">
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="../index.html">Home</a>
+            <a href="vehiculo.html">registrar Vehiculo </a>
+            <a href="reparacion.html">Reparaciones </a>
+            <a href="diagnostico.html">Diagnostico </a>
+        </div>
+        <script>
+			function toggleSidebar() {
+				document.getElementById("sidebar").classList.toggle('active');
+			}
+        </script>
+    </nav>
+    <main>
+<vaadin-text-field theme="small" id="txtR" label="Ingrese su # de Reparación" placeholder="identificador" required="true"
+                   error-message="Ingrese una reparacion" autofocus="true"></vaadin-text-field>
+<vaadin-button theme="success">Buscar</vaadin-button>
+
+<vaadin-grid style="height: 150px;">
+    <vaadin-grid-column id="placa" path="idReparacion"></vaadin-grid-column>
+    <vaadin-grid-column id="id" path="fecha" ></vaadin-grid-column>
+    <vaadin-grid-column path="idDiagnostico" header="Diagnostico" ></vaadin-grid-column>
+    <vaadin-grid-column path="observacion" width="8em" header="Observaciones"></vaadin-grid-column>
+</vaadin-grid>
+<vaadin-accordion>
+
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Personal</div>
+        <div>
+            <ul id="worker">
+            </ul>
+        </div>
+    </vaadin-accordion-panel>
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Piezas</div>
+        <div>
+            <ul id="piezas">
+            </ul>
+        </div>
+    </vaadin-accordion-panel>
+
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Pasos</div>
+        <div>
+            <ul id="pasos">
+            </ul>
+        </div>
+    </vaadin-accordion-panel>
+</vaadin-accordion>
+<vaadin-notification duration="4000" position="top-end"></vaadin-notification>
+    </main>
+    <footer>
+        <a id="idgitF" href="https://github.com/kevin-Oz"><img src="../../src/images/github.png"></a>
+        <label for="idgitF">Kevin Figueroa</label> &nbsp;
+        <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="../../src/images/github.png"></a>
+        <label for="idgitC">Kevin Chinchilla</label>
+    </footer>
+</section>
+<script type="module" src="../Js/Boundary/frmReparacion.js"></script>
+</body>
+</html>
