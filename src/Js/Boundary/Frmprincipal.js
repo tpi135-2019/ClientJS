@@ -37,7 +37,7 @@ function buscarData(){
 
 	const grid = document.querySelector('vaadin-grid');
 	controller.find(`propietario/1/vehiculos`)
-		.then(res => res)
+		.then(res => res.json())
 		.then(json => grid.items = json); //llenando el grid con la data
 
 

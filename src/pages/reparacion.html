@@ -1,90 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../Css/style.css" type="text/css">
-    <link rel="stylesheet" href="../Css/formStyle.css" type="text/css">
+    <title>reparacion</title>
+    <link rel="import" href="./library.html">
+
 </head>
-
 <body>
-
-    <section id="page">
-        <header>
-        </header>
-        <aside></aside>
-        <nav>
-            <div id="sidebar">
-                <div class="toggle-btn" onclick="toggleSidebar()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <a href="../index.html">Home</a>
-                <a href="vehiculo.html">registrar Vehiculo </a>
-                <a href="reparacion.html">Reparaciones </a>
-                <a href="diagnostico.html">Diagnostico </a>
+<section id="page">
+    <header>
+    </header>
+    <aside></aside>
+    <nav>
+        <div id="sidebar">
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <script>
-                function toggleSidebar() {
-                    document.getElementById("sidebar").classList.toggle('active');
-                }
-            </script>
-        </nav>
-        <main>
-            <div class="container">
-                <div class="form__top">
-                    <h2><span></span>Ingreso <span> Reparacion</span></h2>
-                </div>
-                <form id="frmRegistro" class="form__reg" action="">
+            <a href="../index.html">Home</a>
+            <a href="./vehiculo.html">registrar Vehiculo </a>
+            <a href="./reparacion.html">Reparaciones </a>
+            <a href="./diagnostico.html">Diagnostico </a>
+            <a href="./proceso.html">Procesos </a>
+            <a href="./sucursal.html">Talleres </a>
+        </div>
+        <script>
+			function toggleSidebar() {
+				document.getElementById("sidebar").classList.toggle('active');
+			}
+        </script>
+    </nav>
+    <main>
+<vaadin-text-field theme="small" id="txtR" label="Ingrese su # de Reparación" placeholder="identificador" required="true"
+                   error-message="Ingrese una reparacion" autofocus="true"></vaadin-text-field>
+<vaadin-button theme="success">Buscar</vaadin-button>
 
-                    <label for="test" style=" ">seleccione el Diagnostico</label>
-                    <div>
-                        <tpi-complete class="input" type="text" id="idDiagnostico" required autofocus></tpi-complete>
-                    </div>
-                    <div>
-                        <label for="dater">Fecha: </label>
-                        <input type="date" id="dater" class="input" placeholder="fecha" name="fecha" required>
-                    </div>
+<vaadin-grid style="height: 150px;">
+    <vaadin-grid-column id="placa" path="idReparacion"></vaadin-grid-column>
+    <vaadin-grid-column  path="fecha" ></vaadin-grid-column>
+    <vaadin-grid-column path="idDiagnostico" id="id" header="Diagnostico" ></vaadin-grid-column>
+    <vaadin-grid-column path="observacion" width="8em" header="Observaciones"></vaadin-grid-column>
+</vaadin-grid>
+<vaadin-accordion>
 
-                    <label for="test" style=" font-family: 'Lato', sans-serif;">seleccion de personal</label>
-                    <div>
-                        <tpi-multi id="personal" btnlabel="Personal" required></tpi-multi>
-                    </div>
-                    <label for="test">Seleccion de piezas </label>
-                    <div>
-                        <tpi-multi id="piezas" btnlabel="Piezas" required></tpi-multi>
-                    </div>
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Personal a Cargo</div>
+        <div>
+            <ul id="worker"></ul>
+        </div>
+    </vaadin-accordion-panel>
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Piezas Utilizadas</div>
+        <div><ul id="piezas"></ul></div>
+    </vaadin-accordion-panel>
 
-                    <label for="test">Pasos Completados</label>
-                    <div>
-                        <tpi-multi id="pasos" btnlabel="Pasos" required></tpi-multi>
-                    </div>
-
-                    <input class="input" id="observaciones" type="text" placeholder="  observaciones">
-
-
-                    <div class="btn__form">
-                        <input class="btn__submit" type="submit" value="REGISTRAR">
-                        <input class="btn__reset" type="reset" value="LIMPIAR">
-                    </div>
-                </form>
-
-            </div>
-        </main>
-        <footer>
-            <a id="idgitF" href="https://github.com/kevin-Oz"><img src="../images/github.png"></a>
-            <label for="idgitF">Kevin Figueroa</label> &nbsp;
-            <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="../images/github.png"></a>
-            <label for="idgitC">Kevin Chinchilla</label>
-        </footer>
-    </section>
-    <script type="module" src="../Js/Boundary/Componentes/Libreria.js"></script>
-    <script type="module" src="../Js/Boundary/frmReparacion.js"></script>
-
-
-
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Progreso</div>
+        <div>
+            <ul id="pasos">
+            </ul>
+        </div>
+    </vaadin-accordion-panel>
+</vaadin-accordion>
+<vaadin-notification duration="4000" position="top-end"></vaadin-notification>
+    </main>
+    <footer>
+        <a id="idgitF" href="https://github.com/kevin-Oz"><img src="../../src/images/github.png"></a>
+        <label for="idgitF">Kevin Figueroa</label> &nbsp;
+        <a id="idgitC" href="https://github.com/Dragonkiller69"><img src="../../src/images/github.png"></a>
+        <label for="idgitC">Kevin Chinchilla</label>
+    </footer>
+</section>
+<script type="module" src="../Js/Boundary/frmReparacion.js"></script>
 </body>
-
 </html>
