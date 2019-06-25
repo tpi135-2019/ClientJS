@@ -1,8 +1,10 @@
-version: "3"
+version: "3.6"
 services:
   http:
-    image: "httpd:alpine"
-    volumes:
-      - ./:/usr/local/apache2/htdocs/
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: "historycarsfrontend"
+    container_name: historycarsf-container
     ports:
       - "80:80"

@@ -1,6 +1,6 @@
 class MetodsT {
     constructor() {
-        this.urlBase = 'http://localhost:8080/HistoryCars-1.0-SNAPSHOT/webresources/';
+        this.urlBase = 'http://192.168.43.211:9085/HistoryCars/webresources/';
     }
 
     /*
@@ -15,14 +15,14 @@ class MetodsT {
 
 
                 fetch(this.urlBase + path, {
-                    method: 'POST',
-                    body: JSON.stringify(entity),
-                    headers: {
-                        'content-type': 'application/json; charset=UTF-8'
-                    }
+                        method: 'POST',
+                        body: JSON.stringify(entity),
+                        headers: {
+                            'content-type': 'application/json; charset=UTF-8'
+                        }
 
-                }).then(response => console.log(response.status) // ojo aca xd resp.json()
-                )
+                    }).then(response => console.log(response.status) // ojo aca xd resp.json()
+                    )
                     .catch(error => reject(`Error al crear registro : ${error}`))
                     .then(response => resolve(`Success ${response}`));
 
@@ -44,15 +44,15 @@ class MetodsT {
 
 
                 fetch(this.urlBase + path, {
-                    method: 'PUT',
-                    body: JSON.stringify(entity),
-                    headers: {
-                        'Accept': 'application/json',
-                        'content-type': 'application/json'
-                    }
+                        method: 'PUT',
+                        body: JSON.stringify(entity),
+                        headers: {
+                            'Accept': 'application/json',
+                            'content-type': 'application/json'
+                        }
 
-                }).then(resp => resp // ojo aca xd resp.json()
-                )
+                    }).then(resp => resp // ojo aca xd resp.json()
+                    )
                     .catch(error => reject(`Error al editar registro ${error}`))
                     .then(response => resolve(`success ${response}`));
 
@@ -73,8 +73,8 @@ class MetodsT {
             if (id !== undefined && id != null && this.urlBase + path.length > 0) {
 
                 return fetch(this.urlBase + path + '/' + id, {
-                    method: 'DELETE'
-                })
+                        method: 'DELETE'
+                    })
                     .then(respuesta => respuesta // ojo aca xd resp.json()
                     )
                     .catch(error => reject(` (Error al eliminar registro ${error}`))
@@ -94,11 +94,11 @@ class MetodsT {
        */
     find(url) {
         return new Promise((resolve, reject) => {
-            if(url!=null || url!==undefined){
+            if (url != null || url !== undefined) {
                 fetch(this.urlBase + url).then(function(response) {
                     resolve(response);
                 })
-            }else{
+            } else {
                 reject("no se encontró el Recurso en el servidor");
             }
         })
