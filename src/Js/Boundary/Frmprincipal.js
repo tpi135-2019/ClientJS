@@ -25,14 +25,6 @@ let auto=document.querySelector("#dui_");
 
  */
 
-customElements.whenDefined('vaadin-button').then(function() {
-
-	const button = document.querySelector('vaadin-button');
-	button.addEventListener('click', function() {
-		buscarData();
-	});
-});
-
 function buscarData(){
 
 	const grid = document.querySelector('vaadin-grid');

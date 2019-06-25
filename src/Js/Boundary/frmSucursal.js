@@ -27,6 +27,7 @@ const filtro = document.querySelector("#txtR");
 let btn =document.querySelector("#page > main > vaadin-button");
 btn.addEventListener('click',()=>{
 	listarProcesos();
+	listarPersonal();
 	contar=filtro.value-1;
 	buscarData(`sucursal?first=${contar}&pagesize=1`);
 });
@@ -40,9 +41,18 @@ function listarProcesos(){
 		}
 	});
 
-	///listar personal?¡
+	///listar personal?
 }
 
+function listarPersonal(){
+	let personal=document.querySelector("#personal");
+	control.find(`sucursal/${filtro.value}/personal`).then(response=>response.json()).then(data=>{
+		personal.innerHTML='';
+		for (let valor of data){
+			personal.innerHTML +=`<li>${valor.nombre} ${valor.apellido}</li>`
+		}
+	})
+}
 
 
 

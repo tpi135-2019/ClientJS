@@ -51,16 +51,16 @@
         <vaadin-button id="next" theme="primary">Next</vaadin-button>
     </div>
 
-<div>
-    <vaadin-item>
-        <div><strong style=" text-shadow: 3px 3px 2px #696; color: #666;">Especializados en los siguientes Procesos:</strong></div>
-        <div><ul id="procesos"></ul></div>
-    </vaadin-item>
-  <!--  <vaadin-item>
-        <div><strong style=" text-shadow: 3px 3px 2px #696; color: #666;">Empleados:</strong></div>
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Especializado en los siguientes Procesos</div>
+        <div>
+            <ul id="procesos"></ul>
+        </div>
+    </vaadin-accordion-panel>
+    <vaadin-accordion-panel theme="filled">
+        <div slot="summary">Personal</div>
         <div><ul id="personal"></ul></div>
-    </vaadin-item -->
-</div>
+    </vaadin-accordion-panel>
 
 
     <vaadin-notification duration="4000" position="top-end"></vaadin-notification>

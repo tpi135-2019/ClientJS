@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+</head>
+<body>
+<div id="mocha"></div>
+
+<script src="https://unpkg.com/chai/chai.js"></script>
+<script src="https://unpkg.com/mocha/mocha.js"></script>
+
+
+<script class="mocha-init">
+	mocha.setup('bdd');
+	mocha.checkLeaks();
+</script>
+
+<script type="module" class="mocha-exec">
+	import MetodsT from '../Js/Control/MetodsT.js';
+	describe("MetodsT_ResourceTest",function () {
+		let cut;
+		it("verificar Instancia",function () {
+			cut = new MetodsT();
+			chai.assert.isDefined(cut,"esta instanciado!");
+		});
+		it("Hacer Peticiones al Server",async function () {
+			let result;
+			cut=new MetodsT();
+			try {
+				result= await cut.find();
+				chai.assert.isDefined(result,"realiza peticion al servidor!");
+			}catch (e) {
+				console.log(e);
+			}
+		});
+	});
+	mocha.run();
+</script>
+</body>
+</html>

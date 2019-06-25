@@ -36,13 +36,20 @@
                    error-message="Ingrese una reparacion" autofocus="true"></vaadin-text-field>
 <vaadin-button theme="success">Buscar</vaadin-button>
 
-<vaadin-grid style="height: 150px;">
-    <vaadin-grid-column id="placa" path="idReparacion"></vaadin-grid-column>
+<!--vaadin-grid style="height: 150px;" id="grid">
     <vaadin-grid-column  path="fecha" ></vaadin-grid-column>
-    <vaadin-grid-column path="idDiagnostico" id="id" header="Diagnostico" ></vaadin-grid-column>
-    <vaadin-grid-column path="observacion" width="8em" header="Observaciones"></vaadin-grid-column>
-</vaadin-grid>
-<vaadin-accordion>
+    <vaadin-grid-column  path="idReparacion" ></vaadin-grid-column>
+    <vaadin-grid-column  path="idDiagnostico" id="id" ></vaadin-grid-column>
+    <vaadin-grid-column  path="observacion" ></vaadin-grid-column>
+</vaadin-grid -->
+
+
+        <vaadin-accordion-panel theme="filled">
+            <div slot="summary">Detalle Reparacion</div>
+            <div>
+                <ul id="repa"></ul>
+            </div>
+        </vaadin-accordion-panel>
 
     <vaadin-accordion-panel theme="filled">
         <div slot="summary">Personal a Cargo</div>
@@ -62,7 +69,7 @@
             </ul>
         </div>
     </vaadin-accordion-panel>
-</vaadin-accordion>
+
 <vaadin-notification duration="4000" position="top-end"></vaadin-notification>
     </main>
     <footer>

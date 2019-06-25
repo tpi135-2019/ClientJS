@@ -36,10 +36,12 @@
         </script>
     </nav>
     <main>
+        <div>
+            <label for="test" style=" font-family: 'Lato', sans-serif">Buscar Proceso:</label>
+            <tpi-complete autofocus class="input" id="txtR" required type="text"></tpi-complete>
+            <vaadin-button theme="success" id="buscar">Buscar</vaadin-button>
 
-        <vaadin-text-field theme="small" id="txtR" label="Filtrar Proceso" placeholder="identificador" required="true"
-                           error-message="Ingrese # válido" ></vaadin-text-field>
-        <vaadin-button theme="success" id="buscar">Buscar</vaadin-button>
+        </div>
 
         <vaadin-grid style="height: 150px;">
             <vaadin-grid-column  path="idProceso" header="id" width="1em"></vaadin-grid-column>
@@ -63,6 +65,10 @@
             <div slot="summary">Talleres Calificados</div>
             <div><ul id="piezas"></ul></div>
         </vaadin-accordion-panel>
+        <vaadin-accordion-panel theme="filled">
+            <div slot="summary">Lista de pasos</div>
+            <div><ol id="pasos"></ol></div>
+        </vaadin-accordion-panel>
 
 
         <vaadin-notification duration="4000" position="top-end"></vaadin-notification>
@@ -77,5 +83,7 @@
 </section>
 
 <script type="module" src="../Js/Boundary/frmProceso.js"></script>
+<script type="module" src="../Js/Boundary/Componentes/Libreria.js"></script>
+
 </body>
 </html>
