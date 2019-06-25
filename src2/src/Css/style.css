@@ -1,9 +1,7 @@
-
 body {
     margin: 0;
     background-color: #444;
 }
-
 
 #page {
     display: grid;
@@ -14,22 +12,22 @@ body {
     grid-template-columns: 1fr 16fr;
 }
 
-#page > header {
+#page>header {
     grid-area: head;
     background-color: #151719;
 }
 
-#page > aside {
+#page>aside {
     grid-area: as;
     background-color: #444;
 }
 
-#page > nav {
+#page>nav {
     grid-area: nav;
     background-color: #151719;
 }
 
-#page > main {
+#page>main {
     padding: 20px;
     grid-area: main;
     margin: 5px;
@@ -37,11 +35,10 @@ body {
     background-color: #fefff9;
 }
 
-#page > footer {
+#page>footer {
     grid-area: foot;
     background-color: #76ff03;
 }
-
 
 #sidebar {
     position: fixed;
@@ -50,6 +47,7 @@ body {
     background-color: #151719;
     left: -200px;
     transition: 0.5s;
+    z-index: 100;
 }
 
 #sidebar.active {
@@ -112,5 +110,3 @@ body {
 #sidenav a:hover {
     color: #ffff;
 }
-
-
