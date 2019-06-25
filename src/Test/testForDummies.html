@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+</head>
+<body>
+<div id="mocha"></div>
+
+<script src="https://unpkg.com/chai/chai.js"></script>
+<script src="https://unpkg.com/mocha/mocha.js"></script>
+
+
+<script class="mocha-init">
+	mocha.setup('bdd');
+	mocha.checkLeaks();
+</script>
+
+<script type="module" class="mocha-exec">
+	import MetodsT from '../Js/Control/MetodsT.js';
+	var cut;
+	describe("MetodsT_ResourceTest  (no conexion)",function () {
+		it("verificar Instancia",function () {
+			cut = new MetodsT();
+			chai.assert.isDefined(cut,"esta instanciado!");
+		});
+		it("Hacer Peticiones al Server",async function () {
+			let result;
+			try {
+				result= await cut.find();
+				chai.assert.isDefined(result,"realiza peticion al servidor!");
+			}catch (e) {
+				console.log(e);
+			}
+		});
+	});
+    describe("findReparacion (Conexion Server)",function () {
+    verificarTest(`reparacion/5`,`reparacion/e`)
+    });
+
+	describe("Personal por Reparacion (Conexion Server)",function () {
+	verificarTest(`reparacion/5/personal`,`reparacion/e/personal`)
+	});
+
+	describe("Piezas por Reparacion (Conexion Server)",function () {
+	verificarTest(`reparacion/5/pieza`,`reparacion/e/pieza`)
+	});
+
+	describe("Pasos por Reparacion (Conexion Server)",function () {
+    verificarTest(`reparacion/5/paso`,`reparacion/e/paso`);
+	});
+	describe("Buscar Procesos por nombre(Conexion Server)",function () {
+		let filtro=1;
+		verificarTest(`proceso?proceso=${filtro}`,`procesoo?proceso=cam`);
+	});
+	describe("Buscar personal por proceso(Conexion Server)",function () {
+		let txt=1;
+		verificarTest(`proceso/${txt}/personal`,`proceso/e/personal`);
+	});
+	describe("Buscar Taller por proceso(Conexion Server)",function () {
+		verificarTest(`proceso/1/sucursal`,`proceso/e/sucursal`);
+	});
+	describe("Pasos completados por proceso(Conexion Server)",function () {
+		verificarTest(`proceso/1/paso`,`proceso/e/paso`);
+	});
+	describe("findRange de procesos(Conexion Server)",function () {
+        verificarTest(`proceso?first=0&pagesize=2`,`proceso?first==1&pageSize=2`)
+	});
+	describe("findRange de Talleres(Conexion Server)",function () {
+		verificarTest(`sucursal?first=0&pagesize=2`,`sucursal?first==1&pageSize=2`)
+	});
+	describe("Procesos por Taller(Conexion Server)",function () {
+		verificarTest(`sucursal/1/proceso`,`sucursal/w/proceso`)
+	});
+
+	describe("Personal por Taller(Conexion Server)",function () {
+		verificarTest(`sucursal/1/personal`,`sucursal/t/personal`)
+	});
+
+
+
+
+
+
+	mocha.run();
+
+	function verificarTest(path_ok,path_err) {
+
+		it(" buscar existencia", async function () {
+			let response= await cut.find(path_ok);
+			chai.assert.isNotNull(response.json());
+		});
+		it(" verificar status ok", async function () {
+			let response= await cut.find(path_ok);
+			chai.assert.equal(response.status,200);
+		});
+		it(" verificar status Not Found", async function () {
+			let response= await cut.find(path_err);
+			chai.assert.equal(response.status,404);
+		});
+	}
+
+
+</script>
+</body>
+</html>
