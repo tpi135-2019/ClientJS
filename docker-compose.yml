@@ -1,10 +1,10 @@
 version: "3.6"
 services:
   http:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: "historycarsfrontend"
-    container_name: historycarsf-container
+    image: 192.168.43.211:5000/${VERSION}
     ports:
       - "80:80"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
